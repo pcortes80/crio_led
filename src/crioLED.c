@@ -34,7 +34,7 @@ int main()
          
          /* Do something */
          
-         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0));
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1));
          
          printf("Press <Enter> to stop and quit...");
          getchar();
