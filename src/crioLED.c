@@ -26,13 +26,15 @@ int main()
                                               &session));
       if (NiFpga_IsNotError(status))
       {
-         /* Init something */
-
+         /* Reset LED0 */
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0));
+         
          /* run the FPGA application */
          printf("Running the FPGA...\n");
          NiFpga_MergeStatus(&status, NiFpga_Run(session, 0));
          
-         /* Do something */
+         printf("Press <Enter> to turn LED0 on...\n");
+         getchar();
          
          NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1));
          
