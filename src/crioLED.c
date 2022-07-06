@@ -7,6 +7,7 @@
 #include "../include/NiFpga_mainFPGA.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int main()
 {
@@ -33,11 +34,17 @@ int main()
          
          /* Do something */
          
-         /*
-         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session,
-                                                      NiFpga_ExampleRSeries_ControlBool_Stop,
-                                                      1));
-         */
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0));
+         
+         sleep(3000);
+         
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1));
+
+         sleep(3000);
+
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0));
+
+         sleep(3000);
 
          printf("Press <Enter> to stop and quit...");
          getchar();
