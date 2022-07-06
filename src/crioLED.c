@@ -36,16 +36,6 @@ int main()
          
          NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0));
          
-         sleep(3000);
-         
-         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1));
-
-         sleep(3000);
-
-         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0));
-
-         sleep(3000);
-
          printf("Press <Enter> to stop and quit...");
          getchar();
          /* stop the FPGA loops */
