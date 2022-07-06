@@ -7,7 +7,7 @@
 #include "../include/NiFpga_mainFPGA.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+//#include <time.h>
 
 int main()
 {
@@ -33,11 +33,16 @@ int main()
          printf("Running the FPGA...\n");
          NiFpga_MergeStatus(&status, NiFpga_Run(session, 0));
          
-         printf("Press <Enter> to turn LED0 on...\n");
-         getchar();
-         
+         /* Blink LED0 */          
          NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1));
-         
+         sleep(1);
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0));
+         sleep(1);
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1));
+         sleep(1);
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0));
+         sleep(1);
+
          printf("Press <Enter> to stop and quit...");
          getchar();
          /* stop the FPGA loops */
