@@ -4,8 +4,9 @@
  * Driving User LED0 andUserLED1
  */
 
-#include "NiFpga_mainFPGA.h"
+#include "../include/NiFpga_mainFPGA.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -24,7 +25,7 @@ int main()
                                               &session));
       if (NiFpga_IsNotError(status))
       {
-         /* Initialize variables */
+         /* Init something */
 
          /* run the FPGA application */
          printf("Running the FPGA...\n");
@@ -32,15 +33,17 @@ int main()
          
          /* Do something */
          
-         /* NiFpga_MergeStatus(&status, NiFpga_WriteBool(session,
-                                                      NiFpga_mainFPGA_ControlBool_LED0,
+         /*
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session,
+                                                      NiFpga_ExampleRSeries_ControlBool_Stop,
                                                       1));
          */
-               
+
          printf("Press <Enter> to stop and quit...");
          getchar();
          /* stop the FPGA loops */
          printf("Stopping the FPGA...\n");
+         
          /* close the session now that we're done */
          printf("Closing the session...\n");
          NiFpga_MergeStatus(&status, NiFpga_Close(session, 0));

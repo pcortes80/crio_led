@@ -1,17 +1,35 @@
-CC=gcc
-LDFLAGS=-ldl
-OBJECTS=Example.o NiFpga.o
-EXECUTABLE=Example
+#----------------------------------------------------------------------------
+# Macros
+#----------------------------------------------------------------------------
 
-all: $(EXECUTABLE)
+# Compiler to use
+CC := gcc
 
-#$(EXECUTABLE): $(OBJECTS)
+#----------------------------------------------------------------------------
+# Setting of target
+#----------------------------------------------------------------------------
 
+# Source file directories
+SRCDIR := ./src
 
-crioLED.o: NiFpga_ExampleRSeries.h NiFpga.h
+# Directory of executable
+BINDIR := ./bin
 
-NiFpga.o: NiFpga.c NiFpga.h
-	gcc -c src/crio/NiFpga.c -o NiFpga.o
+LDFLAGS = -ldl
+EXECUTABLE = crio
+OBJECTS = crioLED.o NiFpga.o
+
+# Include header file directories
+INC := -I ./include
+
+all: $(OBJECTS)
+	$(CC) $(SRCDIR)/crioLED.o include/NiFpga.o $(LDFLAGS) -o $(EXECUTABLE)
+
+crioLED.o:
+	$(CC) -c $(SRCDIR)/crioLED.c -o $(SRCDIR)/crioLED.o
+
+NiFpga.o:
+	$(CC) -c include/NiFpga.c -o include/NiFpga.o
 
 clean:
-	rm -f $(EXECUTABLE) $(OBJECTS)
+	rm -f $(EXECUTABLE) include/NiFpga.o $(SRCDIR)/crioLED.o
