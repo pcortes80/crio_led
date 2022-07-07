@@ -36,6 +36,10 @@ int main()
          printf("Running the FPGA...\n");
          NiFpga_MergeStatus(&status, NiFpga_Run(session, 0));
          
+         /* Select option 0 */          
+         NiFpga_MergeStatus(&status, NiFpga_WriteI16(session, NiFpga_mainFPGA_ControlI16_options, 0));
+         printf("Selected option 0\n.");
+
          /* Update LEDs individualy */          
          NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1));
          sleep(2);
