@@ -57,6 +57,7 @@ int main()
          /* Update LEDs from integerToBoolArray U8 */
          uint8_t i;
          for(i = 0; i <= 15; i++){
+            NiFpga_MergeStatus(&status, NiFpga_WriteI16(session, NiFpga_mainFPGA_ControlI16_options, 1));
             NiFpga_MergeStatus(&status, NiFpga_WriteU8(session, NiFpga_mainFPGA_ControlU8_integerToBoolArray, i));
             printf("i = %d\n", i);
             sleep(0.5);
