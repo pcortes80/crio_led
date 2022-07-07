@@ -26,22 +26,25 @@ int main()
                                               &session));
       if (NiFpga_IsNotError(status))
       {
-         /* Reset LED0 */
+         /* Reset LEDs */
          NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0));
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED1,0));
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED2,0));
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED3,0));
          
          /* run the FPGA application */
          printf("Running the FPGA...\n");
          NiFpga_MergeStatus(&status, NiFpga_Run(session, 0));
          
-         /* Blink LED0 */          
+         /* Update LEDs individualy */          
          NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1));
-         sleep(1);
-         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0));
-         sleep(1);
-         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1));
-         sleep(1);
-         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0));
-         sleep(1);
+         sleep(2);
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED1,1));
+         sleep(2);
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED2,1));
+         sleep(2);
+         NiFpga_MergeStatus(&status, NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED3,1));
+         sleep(2);
 
          printf("Press <Enter> to stop and quit...");
          getchar();
