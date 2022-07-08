@@ -70,7 +70,7 @@ int main()
          /* Update LEDs from integerInputs U8 */
          NiFpga_WriteU8(session, NiFpga_mainFPGA_ControlU8_integerInputs, i);
          for (i = 0; i <= 15; i++) {
-            NiFpga_WriteU8(session, NiFpga_mainFPGA_ControlU8_integerToBoolArray, i);
+            NiFpga_WriteU8(session, NiFpga_mainFPGA_ControlU8_integerInputs, i);
             printf("i = %d\n", i);
             sleep(1);
          }
