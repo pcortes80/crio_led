@@ -41,6 +41,14 @@ int main()
          NiFpga_WriteI16(session, NiFpga_mainFPGA_ControlI16_options, 0);
          printf("Selected option 0.\n");
 
+         /* Select SimulatorOption = False (real hw) */          
+         //NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_isSimulatorMode, 0);
+         //printf("Simulator Mode = False (Real HW).\n");
+
+         /* Select SimulatorOption = True (no hw) */          
+         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_isSimulatorMode, 1);
+         printf("Simulator Mode = True (No HW).\n");
+         
          /* Update LEDs individualy */          
          NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1);
          sleep(2);
