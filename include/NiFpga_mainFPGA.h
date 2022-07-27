@@ -24,7 +24,12 @@
 /**
  * The signature of the FPGA bitfile.
  */
-static const char* const NiFpga_mainFPGA_Signature = "D42CFCC1B213721A1DB20874CAA01267";
+static const char* const NiFpga_mainFPGA_Signature = "38F7881F4D9FB8C49C12567F72FA5360";
+
+typedef enum
+{
+   NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput = 0x18022,
+} NiFpga_mainFPGA_IndicatorU8;
 
 typedef enum
 {
@@ -32,6 +37,7 @@ typedef enum
    NiFpga_mainFPGA_ControlBool_LED1 = 0x18012,
    NiFpga_mainFPGA_ControlBool_LED2 = 0x18016,
    NiFpga_mainFPGA_ControlBool_LED3 = 0x1801A,
+   NiFpga_mainFPGA_ControlBool_isSimulatorMode = 0x1801E,
 } NiFpga_mainFPGA_ControlBool;
 
 typedef enum
