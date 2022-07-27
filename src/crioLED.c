@@ -27,37 +27,55 @@ int main()
                                         &session);
       if (NiFpga_IsNotError(status))
       {
-         /* Reset LEDs */
-         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0);
-         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED1,0);
-         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED2,0);
-         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED3,0);
-         
          /* run the FPGA application */
          printf("Running the FPGA...\n");
          NiFpga_Run(session, 0);
-         
+                
          /* Select option 0 */          
          NiFpga_WriteI16(session, NiFpga_mainFPGA_ControlI16_options, 0);
          printf("Selected option 0.\n");
 
          /* Select SimulatorOption = False (real hw) */          
-         //NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_isSimulatorMode, 0);
-         //printf("Simulator Mode = False (Real HW).\n");
+         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_isSimulatorMode, 0);
+         printf("Simulator Mode = False (Real HW).\n");
 
          /* Select SimulatorOption = True (no hw) */          
-         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_isSimulatorMode, 1);
-         printf("Simulator Mode = True (No HW).\n");
-         
+         //NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_isSimulatorMode, 1);
+         //printf("Simulator Mode = True (No HW).\n");
+
+         /* Reset LEDs */
+         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0);
+         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED1,0);
+         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED2,0);
+         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED3,0);
+
          /* Update LEDs individualy */          
+         uint8_t outvalue = 0;
+         /* Read LED0 */
          NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1);
+         /* Read outvalue */
+         NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
+         printf("outvalue = %u\n", outvalue);
          sleep(2);
+         /* Read LED1 */
          NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED1,1);
+         /* Read outvalue*/
+         NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
+         printf("outvalue = %u\n", outvalue);         
          sleep(2);
+         /* Read LED2 */
          NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED2,1);
+         /* Read outvalue */
+         NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
+         printf("outvalue = %u\n", outvalue);         
          sleep(2);
+         /* Read LED3 */
          NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED3,1);
          sleep(2);
+         /* Read outvalue */
+         NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
+         printf("outvalue = %u\n", outvalue);         
+         sleep(2);         
 
          /* Select option 1 */          
          NiFpga_WriteI16(session, NiFpga_mainFPGA_ControlI16_options, 1);
@@ -68,6 +86,9 @@ int main()
          for (i = 0; i <= 15; i++) {
             NiFpga_WriteU8(session, NiFpga_mainFPGA_ControlU8_integerToBoolArray, i);
             printf("i = %d\n", i);
+            /* Read outvalue */
+            NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
+            printf("outvalue = %u\n", outvalue);                     
             sleep(1);
          }
 
@@ -80,6 +101,9 @@ int main()
          for (i = 0; i <= 15; i++) {
             NiFpga_WriteU8(session, NiFpga_mainFPGA_ControlU8_integerInputs, i);
             printf("i = %d\n", i);
+            /* Read outvalue */
+            NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
+            printf("outvalue = %u\n", outvalue);         
             sleep(1);
          }
 
