@@ -51,31 +51,54 @@ int main()
 
          /* Update LEDs individualy */          
          uint8_t outvalue = 0;
-         /* Read LED0 */
+         /* Write LED0 */
          NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,1);
          /* Read outvalue */
          NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
          printf("outvalue = %u\n", outvalue);
-         sleep(2);
-         /* Read LED1 */
+         sleep(1);
+         /* Write LED1 */
          NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED1,1);
          /* Read outvalue*/
          NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
          printf("outvalue = %u\n", outvalue);         
-         sleep(2);
-         /* Read LED2 */
+         sleep(1);
+         /* Write LED2 */
          NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED2,1);
          /* Read outvalue */
          NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
          printf("outvalue = %u\n", outvalue);         
-         sleep(2);
-         /* Read LED3 */
+         sleep(1);
+         /* Write LED3 */
          NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED3,1);
-         sleep(2);
          /* Read outvalue */
          NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
          printf("outvalue = %u\n", outvalue);         
-         sleep(2);         
+         sleep(1);      
+         /* Write LED0 */   
+         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED0,0);
+         /* Read outvalue */
+         NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
+         printf("outvalue = %u\n", outvalue);         
+         sleep(1);  
+         /* Write LED1 */   
+         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED1,0);
+         /* Read outvalue */
+         NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
+         printf("outvalue = %u\n", outvalue);         
+         sleep(1);  
+         /* Write LED2 */   
+         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED2,0);
+         /* Read outvalue */
+         NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
+         printf("outvalue = %u\n", outvalue);         
+         sleep(1);  
+         /* Write LED3 */   
+         NiFpga_WriteBool(session, NiFpga_mainFPGA_ControlBool_LED3,0);
+         /* Read outvalue */
+         NiFpga_ReadU8(session, NiFpga_mainFPGA_IndicatorU8_booleanInputsToIntegerOutput, &outvalue);
+         printf("outvalue = %u\n", outvalue);         
+         sleep(1);  
 
          /* Select option 1 */          
          NiFpga_WriteI16(session, NiFpga_mainFPGA_ControlI16_options, 1);
